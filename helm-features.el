@@ -23,7 +23,7 @@
 (cl-defun helm-features-action-open (candidate)
   (cl-letf ((library-file (find-library-name
                            candidate)))
-    (helm-switch-to-buffer
+    (switch-to-buffer
      (find-file
       library-file))))
 
