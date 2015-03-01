@@ -2,8 +2,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'cl-lib))
+(require 'cl-lib)
 
 (cl-defun helm-features-init ()
   (setq helm-features-candidates
