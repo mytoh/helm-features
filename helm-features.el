@@ -4,6 +4,8 @@
 
 (require 'cl-lib)
 
+(defvar helm-features-candidates nil)
+
 (cl-defun helm-features-init ()
   (setq helm-features-candidates
         (helm-features-create-candidates)))
