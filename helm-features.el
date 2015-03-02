@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'seq)
 
 (defvar helm-features-candidates nil)
 
@@ -11,7 +12,11 @@
         (helm-features-create-candidates)))
 
 (cl-defun helm-features-create-candidates ()
-  features)
+  (seq-map
+   (lambda (f)
+     (cons (symbol-name f)
+           f))
+   features))
 
 (defclass helm-features-source (helm-source-sync)
   ((init :initform helm-features-init)
@@ -23,13 +28,13 @@
 
 (cl-defun helm-features-action-open (candidate)
   (cl-letf ((library-file (find-library-name
-                           candidate)))
+                           (symbol-name candidate))))
     (switch-to-buffer
      (find-file
       library-file))))
 
 (cl-defun helm-features-action-unload (candidate)
-  (cl-letf ((library (intern candidate)))
+  (cl-letf ((library candidate))
     (unload-feature library)))
 
 (defvar helm-source-features
