@@ -14,7 +14,7 @@
 (cl-defun helm-features-create-candidates ()
   (seq-map
    (lambda (f)
-     (cons (symbol-name f)
+     (cons (helm-stringify f)
            f))
    features))
 
@@ -28,7 +28,7 @@
 
 (cl-defun helm-features-action-open (candidate)
   (cl-letf ((library-file (find-library-name
-                           (symbol-name candidate))))
+                           (helm-stringify candidate))))
     (switch-to-buffer
      (find-file
       library-file))))
