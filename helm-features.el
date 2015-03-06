@@ -4,6 +4,7 @@
 
 (require 'cl-lib)
 (require 'seq)
+(require 'helm)
 
 (defvar helm-features-candidates nil)
 
